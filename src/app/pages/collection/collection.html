@@ -1,0 +1,59 @@
+<main class="collection-page">
+
+  <section class="collection-header">
+    <h1>The Collection</h1>
+    <div class="ornament" aria-hidden="true"><span></span><i>&#10022;</i><span></span></div>
+    <p class="collection-kicker">Stories Across Every Medium</p>
+  </section>
+
+  <section class="collection-list">
+    @for (item of items; track item.title; let i = $index) {
+      <article class="collection-row" [class.reverse]="i % 2 === 1">
+
+        <div class="collection-media reveal-media" [class.in-view]="visibleRows().has(i)">
+          <div class="collection-frame">
+            <img [src]="item.image" [alt]="item.imageAlt" [attr.loading]="i === 0 ? 'eager' : 'lazy'" [attr.fetchpriority]="i === 0 ? 'high' : null">
+          </div>
+        </div>
+
+        <div class="collection-content reveal-text" [class.in-view]="visibleRows().has(i)">
+          <p class="collection-tag">
+            <span class="tag-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
+            {{ item.tag }}
+          </p>
+          <h2>{{ item.title }}</h2>
+          <p class="collection-meta">{{ item.meta }}</p>
+          <p class="collection-synopsis">{{ item.synopsis }}</p>
+
+          @if (item.details.length) {
+            <button
+              type="button"
+              class="details-toggle"
+              (click)="toggleDetails(i)"
+              [attr.aria-expanded]="isExpanded(i)"
+            >
+              <span>{{ isExpanded(i) ? 'Hide Details' : 'More Details' }}</span>
+              <span class="details-chevron" [class.open]="isExpanded(i)">&#9662;</span>
+            </button>
+
+            <div class="cast-wrap" [class.expanded]="isExpanded(i)">
+              <ul class="collection-details">
+                @for (detail of item.details; track detail.label) {
+                  <li><span>{{ detail.label }}</span>{{ detail.value }}</li>
+                }
+              </ul>
+            </div>
+          }
+
+          @if (item.link) {
+            <a class="cta small" [href]="item.link" target="_blank" rel="noopener noreferrer">
+              {{ item.linkLabel }} <span class="arrow">&rarr;</span>
+            </a>
+          }
+        </div>
+
+      </article>
+    }
+  </section>
+
+</main>
