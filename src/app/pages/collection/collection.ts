@@ -82,7 +82,7 @@ export class Collection {
       linkLabel: 'View on IMDb',
     },
     {
-      tag: 'Novel',
+      tag: 'Manuscript',
       title: 'Love in a Bottle',
       meta: 'Romantic Comedy',
       synopsis: 'Bridgette has finally found the man of her dreams. But to keep him, it comes with a price.',
