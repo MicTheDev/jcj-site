@@ -56,4 +56,25 @@
     }
   </section>
 
+  <section class="screenplay-section">
+    <div class="screenplay-heading">
+      <div class="ornament small" aria-hidden="true"><span></span><i>&#10022;</i><span></span></div>
+      <h2>Screenplays in Development</h2>
+      <p class="screenplay-kicker">More Stories, Waiting for Their Moment on Screen</p>
+    </div>
+
+    <div class="screenplay-grid">
+      @for (script of screenplays; track script.title; let i = $index) {
+        <article
+          class="screenplay-card reveal-text"
+          [class.in-view]="visibleCards().has(i)"
+          [style.transition-delay.ms]="120 + (i % 3) * 90"
+        >
+          <h3>{{ script.title }}</h3>
+          <p class="screenplay-genre">{{ script.genre }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
 </main>

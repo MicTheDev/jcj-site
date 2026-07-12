@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-news',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './news.html',
 })
 export class News {

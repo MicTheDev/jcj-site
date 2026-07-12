@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, afterNextRender, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -8,6 +8,15 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class Navbar {
   protected readonly menuOpen = signal(false);
+  protected readonly scrolled = signal(false);
+
+  constructor() {
+    afterNextRender(() => {
+      const updateScrolled = () => this.scrolled.set(window.scrollY > 10);
+      updateScrolled();
+      window.addEventListener('scroll', updateScrolled, { passive: true });
+    });
+  }
 
   toggleMenu(): void {
     this.menuOpen.update((open) => !open);

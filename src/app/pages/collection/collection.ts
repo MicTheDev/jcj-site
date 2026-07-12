@@ -1,4 +1,4 @@
-import { Component, ElementRef, afterNextRender, signal } from '@angular/core';
+import { Component, ElementRef, WritableSignal, afterNextRender, signal } from '@angular/core';
 
 interface CollectionDetail {
   label: string;
@@ -17,6 +17,11 @@ interface CollectionItem {
   linkLabel?: string;
 }
 
+interface ScreenplayItem {
+  title: string;
+  genre: string;
+}
+
 @Component({
   selector: 'app-collection',
   imports: [],
@@ -29,7 +34,7 @@ export class Collection {
       title: 'A Princess in the Ghetto',
       meta: 'Urban Drama · Live Stage Production',
       synopsis: 'It explores the journey of a young girl named Monique who preserves her dreams, identity, and creative ambitions while navigating the cycles of the inner city.',
-      image: '/images/Princess/Gemini_Generated_Image_wtc2ebwtc2ebwtc2.png',
+      image: '/images/Princess/princess.png',
       imageAlt: 'A Princess in the Ghetto stage play artwork',
       details: [
         { label: 'Director', value: 'Iv Amenti' },
@@ -92,8 +97,21 @@ export class Collection {
     },
   ];
 
+  protected readonly screenplays: ScreenplayItem[] = [
+    { title: 'In Love With a Killer', genre: 'Light Comedy · Turns Dark' },
+    { title: 'If I Never See Forever', genre: 'Family Drama' },
+    { title: 'Match My Love', genre: 'Drama · Romance' },
+    { title: 'In the Meantime', genre: 'Drama' },
+    { title: 'A Jones Family Affair', genre: 'Psychological Drama' },
+    { title: 'Blood on the Altar', genre: 'Whodunit · Murder Drama' },
+    { title: 'SugaWoman Part Un', genre: 'Light Dramedy' },
+    { title: 'SugaWoman Part Deux', genre: 'Light Dramedy' },
+    { title: 'SugaWoman Part Trois', genre: 'Light Dramedy' },
+  ];
+
   protected readonly expanded = signal<ReadonlySet<number>>(new Set());
   protected readonly visibleRows = signal<ReadonlySet<number>>(new Set());
+  protected readonly visibleCards = signal<ReadonlySet<number>>(new Set());
 
   constructor(private readonly host: ElementRef<HTMLElement>) {
     afterNextRender(() => this.observeReveal());
@@ -116,13 +134,18 @@ export class Collection {
   }
 
   private observeReveal(): void {
-    const rows = Array.from(this.host.nativeElement.querySelectorAll<HTMLElement>('.collection-row'));
+    this.watchReveal('.collection-row', this.visibleRows);
+    this.watchReveal('.screenplay-card', this.visibleCards);
+  }
+
+  private watchReveal(selector: string, target: WritableSignal<ReadonlySet<number>>): void {
+    const elements = Array.from(this.host.nativeElement.querySelectorAll<HTMLElement>(selector));
     const observer = new IntersectionObserver(
       (entries) => {
-        const revealed = entries.filter((entry) => entry.isIntersecting).map((entry) => rows.indexOf(entry.target as HTMLElement));
+        const revealed = entries.filter((entry) => entry.isIntersecting).map((entry) => elements.indexOf(entry.target as HTMLElement));
         if (!revealed.length) return;
 
-        this.visibleRows.update((current) => {
+        target.update((current) => {
           const next = new Set(current);
           revealed.forEach((index) => next.add(index));
           return next;
@@ -135,6 +158,6 @@ export class Collection {
       { threshold: 0.15, rootMargin: '0px 0px -60px 0px' },
     );
 
-    rows.forEach((row) => observer.observe(row));
+    elements.forEach((element) => observer.observe(element));
   }
 }
