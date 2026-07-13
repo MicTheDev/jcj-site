@@ -95,6 +95,15 @@ export class Collection {
       imageAlt: 'Love in a Bottle cover art',
       details: [],
     },
+    {
+      tag: 'Manuscript',
+      title: 'Leave of Absence',
+      meta: 'Drama',
+      synopsis: 'Two failed attempts at the Bar Exam. A dream deferred. And life goes on. Until tragedy strikes. A near-death experience. It’s then that Michael must argue the only case that will ever matter. But not before a human tribunal.',
+      image: '/images/LeaveOfAbsence/IMG_1626.PNG',
+      imageAlt: 'Leave of Absence cover art',
+      details: [],
+    },
   ];
 
   protected readonly screenplays: ScreenplayItem[] = [

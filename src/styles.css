@@ -769,6 +769,28 @@ a { text-decoration: none; }
   margin: 0;
 }
 
+.collection-disclaimer {
+  max-width: 700px;
+  margin: clamp(90px, 11vw, 130px) auto 0;
+  padding-top: 26px;
+  border-top: 1px solid rgba(201, 162, 39, 0.15);
+  text-align: center;
+}
+
+.collection-disclaimer p {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  color: rgba(242, 237, 224, 0.45);
+  margin: 0;
+}
+
+.collection-disclaimer strong {
+  color: rgba(242, 237, 224, 0.6);
+  font-weight: 600;
+}
+
 /* ---------- Scroll reveal ---------- */
 
 .reveal-media,
