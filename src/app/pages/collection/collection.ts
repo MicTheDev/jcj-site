@@ -49,6 +49,8 @@ export class Collection {
       image: '/images/NotOurSisterMovie/NotOurSisterMovie.JPG',
       imageAlt: "She's Not Our Sister film poster",
       details: [
+        { label: 'Writer', value: 'Johnnie C. Johnson Jr.' },
+        { label: 'Producer', value: 'Swirl Films' },
         { label: 'Starring', value: 'Kellita Smith, Christian Keyes, Drew Sidora, Jazsmin Lewis' },
         { label: 'Also Starring', value: 'Clifton Powell, Azur-De Johnson, Tony Grant' },
         { label: 'Status', value: 'Streaming' },
@@ -64,6 +66,8 @@ export class Collection {
       image: '/images/NotOurSisterTV/NotOutSisterTV.JPG',
       imageAlt: "She's Still Not Our Sister mini-series poster",
       details: [
+        { label: 'Writer', value: 'Johnnie C. Johnson Jr.' },
+        { label: 'Producer', value: 'Swirl Films' },
         { label: 'Starring', value: 'Kellita Smith, Christian Keyes, Drew Sidora' },
         { label: 'Also Starring', value: 'Jackée Harry, Clifton Powell, Azur-De Johnson' },
         { label: 'Status', value: 'Streaming' },
@@ -79,6 +83,8 @@ export class Collection {
       image: '/images/LoveYouSave/LoveYouSave.JPG',
       imageAlt: 'The Love You Save film poster',
       details: [
+        { label: 'Writer', value: 'Johnnie C. Johnson Jr.' },
+        { label: 'Producer', value: 'Swirl Films' },
         { label: 'Starring', value: 'Robin Givens, Christopher Williams, Kierra "Kiki" Sheard' },
         { label: 'Also Starring', value: 'Denyce Lawton, Sean Riggs' },
         { label: 'Status', value: 'Streaming' },
