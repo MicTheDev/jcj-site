@@ -17,10 +17,7 @@
         </div>
 
         <div class="collection-content reveal-text" [class.in-view]="visibleRows().has(i)">
-          <p class="collection-tag">
-            <span class="tag-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
-            {{ item.tag }}
-          </p>
+          <p class="collection-tag">{{ item.tag }}</p>
           <h2>{{ item.title }}</h2>
           <p class="collection-meta">{{ item.meta }}</p>
           <p class="collection-synopsis">{{ item.synopsis }}</p>
